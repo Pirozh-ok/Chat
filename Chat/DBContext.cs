@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 
 namespace Chat
 {
     public class DBContext : DbContext
     {
-        protected DBContext():base("DbConnectionString")
-        {
-
-        }
+        public DBContext() : base("DbConnectionString")
+        { }
+        public DbSet<UserData> UserDatas { get; set; }
     }
 }

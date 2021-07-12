@@ -39,6 +39,7 @@ namespace Chat
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tLogin = new System.Windows.Forms.TextBox();
+            this.labException = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -46,7 +47,8 @@ namespace Chat
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(51)))), ((int)(((byte)(173)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
+            this.panel1.Controls.Add(this.labException);
             this.panel1.Controls.Add(this.bSign_up);
             this.panel1.Controls.Add(this.bLog_in);
             this.panel1.Controls.Add(this.label3);
@@ -62,10 +64,10 @@ namespace Chat
             // 
             // bSign_up
             // 
-            this.bSign_up.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(51)))), ((int)(((byte)(173)))));
+            this.bSign_up.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.bSign_up.FlatAppearance.BorderSize = 0;
             this.bSign_up.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bSign_up.Font = new System.Drawing.Font("Ravie", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bSign_up.Font = new System.Drawing.Font("Arial Narrow", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bSign_up.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.bSign_up.Location = new System.Drawing.Point(113, 403);
             this.bSign_up.Name = "bSign_up";
@@ -78,7 +80,7 @@ namespace Chat
             // bLog_in
             // 
             this.bLog_in.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(187)))), ((int)(((byte)(63)))));
-            this.bLog_in.Font = new System.Drawing.Font("Ravie", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bLog_in.Font = new System.Drawing.Font("Arial Narrow", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bLog_in.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.bLog_in.Location = new System.Drawing.Point(138, 329);
             this.bLog_in.Name = "bLog_in";
@@ -91,76 +93,89 @@ namespace Chat
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Ravie", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Arial Narrow", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label3.Location = new System.Drawing.Point(13, 253);
+            this.label3.Location = new System.Drawing.Point(51, 236);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(187, 35);
+            this.label3.Size = new System.Drawing.Size(151, 40);
             this.label3.TabIndex = 4;
             this.label3.Text = "Password";
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(28)))), ((int)(((byte)(113)))));
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.panel3.Controls.Add(this.tPassword);
-            this.panel3.Location = new System.Drawing.Point(220, 233);
+            this.panel3.Location = new System.Drawing.Point(220, 218);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(173, 75);
+            this.panel3.Size = new System.Drawing.Size(173, 67);
             this.panel3.TabIndex = 3;
             // 
             // tPassword
             // 
-            this.tPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(28)))), ((int)(((byte)(113)))));
-            this.tPassword.Font = new System.Drawing.Font("Ravie", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.tPassword.Location = new System.Drawing.Point(1, 12);
+            this.tPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.tPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tPassword.Font = new System.Drawing.Font("Arial Narrow", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tPassword.ForeColor = System.Drawing.Color.White;
+            this.tPassword.Location = new System.Drawing.Point(5, 12);
             this.tPassword.MaxLength = 20;
             this.tPassword.Name = "tPassword";
             this.tPassword.PasswordChar = '*';
-            this.tPassword.Size = new System.Drawing.Size(170, 51);
+            this.tPassword.Size = new System.Drawing.Size(166, 38);
             this.tPassword.TabIndex = 8;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Ravie", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Arial Narrow", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label2.Location = new System.Drawing.Point(84, 172);
+            this.label2.Location = new System.Drawing.Point(109, 157);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 36);
+            this.label2.Size = new System.Drawing.Size(93, 40);
             this.label2.TabIndex = 2;
             this.label2.Text = "Login";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Ravie", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Arial Narrow", 49.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label1.Location = new System.Drawing.Point(61, 10);
+            this.label1.Location = new System.Drawing.Point(98, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(307, 107);
+            this.label1.Size = new System.Drawing.Size(214, 98);
             this.label1.TabIndex = 0;
             this.label1.Text = "ChaT";
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(28)))), ((int)(((byte)(113)))));
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.panel2.Controls.Add(this.tLogin);
-            this.panel2.Location = new System.Drawing.Point(221, 152);
+            this.panel2.Location = new System.Drawing.Point(221, 137);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(172, 75);
             this.panel2.TabIndex = 1;
             // 
             // tLogin
             // 
-            this.tLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(28)))), ((int)(((byte)(113)))));
-            this.tLogin.Font = new System.Drawing.Font("Ravie", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.tLogin.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tLogin.Font = new System.Drawing.Font("Arial Narrow", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.tLogin.Location = new System.Drawing.Point(-1, 14);
+            this.tLogin.Location = new System.Drawing.Point(3, 20);
             this.tLogin.MaxLength = 20;
             this.tLogin.Name = "tLogin";
-            this.tLogin.Size = new System.Drawing.Size(170, 51);
+            this.tLogin.Size = new System.Drawing.Size(166, 38);
             this.tLogin.TabIndex = 7;
+            // 
+            // labException
+            // 
+            this.labException.AutoSize = true;
+            this.labException.ForeColor = System.Drawing.Color.White;
+            this.labException.Location = new System.Drawing.Point(138, 288);
+            this.labException.Name = "labException";
+            this.labException.Size = new System.Drawing.Size(183, 17);
+            this.labException.TabIndex = 8;
+            this.labException.Text = "Marked fields are required *";
+            this.labException.Visible = false;
             // 
             // FormLog_in
             // 
@@ -191,6 +206,7 @@ namespace Chat
         private System.Windows.Forms.Button bSign_up;
         private System.Windows.Forms.TextBox tPassword;
         private System.Windows.Forms.TextBox tLogin;
+        private System.Windows.Forms.Label labException;
     }
 }
 

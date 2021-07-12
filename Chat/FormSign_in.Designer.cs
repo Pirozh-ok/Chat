@@ -81,7 +81,7 @@ namespace Chat
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Ravie", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label2.Location = new System.Drawing.Point(-4, 147);
+            this.label2.Location = new System.Drawing.Point(-8, 147);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(215, 36);
             this.label2.TabIndex = 4;

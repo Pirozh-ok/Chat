@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace Chat
 {
@@ -30,8 +31,8 @@ namespace Chat
         private void bSign_up_Click(object sender, EventArgs e)
         {
             FormLog_in formLog_In = this; 
-            FormSign_in form = new FormSign_in (ref formLog_In);
-            form.Show();
+            FormSign_in formSignIn = new FormSign_in (ref formLog_In);
+            formSignIn.Show();
             this.Visible = false;
         }
     }

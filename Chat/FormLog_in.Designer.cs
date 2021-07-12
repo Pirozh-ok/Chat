@@ -67,11 +67,11 @@ namespace Chat
             this.bSign_up.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bSign_up.Font = new System.Drawing.Font("Ravie", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bSign_up.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.bSign_up.Location = new System.Drawing.Point(121, 403);
+            this.bSign_up.Location = new System.Drawing.Point(113, 403);
             this.bSign_up.Name = "bSign_up";
-            this.bSign_up.Size = new System.Drawing.Size(163, 36);
+            this.bSign_up.Size = new System.Drawing.Size(181, 36);
             this.bSign_up.TabIndex = 6;
-            this.bSign_up.Text = "Sign up?";
+            this.bSign_up.Text = "Sign up";
             this.bSign_up.UseVisualStyleBackColor = false;
             this.bSign_up.Click += new System.EventHandler(this.bSign_up_Click);
             // 

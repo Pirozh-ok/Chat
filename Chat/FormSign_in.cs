@@ -10,6 +10,12 @@ using System.Windows.Forms;
 
 namespace Chat
 {
+    public enum sex
+    {
+        male,
+        female,
+        other
+    }
     public partial class FormSign_in : Form
     {
         FormLog_in formLogIn; 
@@ -22,7 +28,7 @@ namespace Chat
         }
 
         private void bCreatAccount_Click(object sender, EventArgs e)
-        {
+        {  
             var newUserName = tUserName.Text;
             var newLogin = tLogin.Text;
             var newPassword = tPassword.Text;

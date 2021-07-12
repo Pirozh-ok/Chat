@@ -64,7 +64,7 @@ namespace Chat
             // 
             // bSign_up
             // 
-            this.bSign_up.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.bSign_up.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             this.bSign_up.FlatAppearance.BorderSize = 0;
             this.bSign_up.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bSign_up.Font = new System.Drawing.Font("Arial Narrow", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));

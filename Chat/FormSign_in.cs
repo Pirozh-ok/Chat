@@ -22,6 +22,7 @@ namespace Chat
         public FormSign_in(ref FormLog_in _form)
         {
             InitializeComponent();
+            SetStartSettings();
 
             cbGender.Items.Add("Male");
             cbGender.Items.Add("Female");
@@ -32,26 +33,55 @@ namespace Chat
             else throw new NullReferenceException();
         }
 
+        private void SetStartSettings()
+        {
+            labException.Visible = false;
+            panel1.BorderStyle = BorderStyle.None;
+            panel2.BorderStyle = BorderStyle.None;
+            panel3.BorderStyle = BorderStyle.None;
+        }
+
         private void bCreatAccount_Click(object sender, EventArgs e)
         {
-            using (var context = new DBContext())
-            { 
-                var userData = new UserData()
-                {
-                    Login = tLogin.Text,
-                    Password = tPassword.Text,
-                    UserName = tUserName.Text,
-                    DateRegister = DateTime.Now,
-                    Sex = sex.male,                
-                };
+            try
+            {
+                SetStartSettings();
 
-                context.UserDatas.Add(userData);
-                context.SaveChanges();
-                MessageBox.Show($"Пользователь {userData.UserName} was successfully registered");
+                if (tUserName.Text != "" && tLogin.Text != "" && tPassword.Text != "")
+                {
+                    using (var context = new DBContext())
+                    {
+                        var userData = new UserData()
+                        {
+                            Login = tLogin.Text,
+                            Password = tPassword.Text,
+                            UserName = tUserName.Text,
+                            DateRegister = DateTime.Now,
+                            Sex = sex.male,
+                        };
+
+                        context.UserDatas.Add(userData);
+                        context.SaveChanges();
+                        MessageBox.Show($"User {userData.UserName} was successfully registered");
+                    }
+
+                    formLogIn.Visible = true;
+                    this.Close();
+                }
+                else throw new FormatException(); 
             }
- 
-            formLogIn.Visible = true;
-            this.Close(); 
+            catch (FormatException)
+            {
+                if (tUserName.Text == "")
+                    panel2.BorderStyle = BorderStyle.Fixed3D;
+                if (tLogin.Text == "")
+                    panel1.BorderStyle = BorderStyle.Fixed3D;
+                if (tPassword.Text == "")
+                    panel3.BorderStyle = BorderStyle.Fixed3D;
+
+                labException.Visible = true; 
+            }
         }
     }
 }
+

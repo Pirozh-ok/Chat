@@ -42,6 +42,7 @@ namespace Chat
             this.bCreatAccount = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.cbGender = new System.Windows.Forms.ComboBox();
+            this.labException = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -188,12 +189,24 @@ namespace Chat
             this.cbGender.TabIndex = 11;
             this.cbGender.Text = "Male";
             // 
+            // labException
+            // 
+            this.labException.AutoSize = true;
+            this.labException.ForeColor = System.Drawing.Color.White;
+            this.labException.Location = new System.Drawing.Point(144, 355);
+            this.labException.Name = "labException";
+            this.labException.Size = new System.Drawing.Size(183, 17);
+            this.labException.TabIndex = 12;
+            this.labException.Text = "* Marked fields are required";
+            this.labException.Visible = false;
+            // 
             // FormSign_in
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             this.ClientSize = new System.Drawing.Size(394, 450);
+            this.Controls.Add(this.labException);
             this.Controls.Add(this.cbGender);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.bCreatAccount);
@@ -231,5 +244,6 @@ namespace Chat
         private System.Windows.Forms.Button bCreatAccount;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cbGender;
+        private System.Windows.Forms.Label labException;
     }
 }

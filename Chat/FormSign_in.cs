@@ -18,8 +18,7 @@ namespace Chat
     }
     public partial class FormSign_in : Form
     {
-        FormLog_in formLogIn;
-        public FormSign_in(ref FormLog_in _form)
+        public FormSign_in()
         {
             InitializeComponent();
             SetStartSettings();
@@ -27,10 +26,6 @@ namespace Chat
             cbGender.Items.Add("Male");
             cbGender.Items.Add("Female");
             cbGender.Items.Add("Other");
-
-            if (_form != null)
-                formLogIn = _form;
-            else throw new NullReferenceException();
         }
 
         private void SetStartSettings()
@@ -65,7 +60,8 @@ namespace Chat
                         MessageBox.Show($"User {userData.UserName} was successfully registered");
                     }
 
-                    formLogIn.Visible = true;
+                    FormLog_in formLog_In = new FormLog_in();
+                    formLog_In.Show(); 
                     this.Close();
                 }
                 else throw new FormatException(); 
@@ -81,6 +77,17 @@ namespace Chat
 
                 labException.Visible = true; 
             }
+        }
+
+        private void bLog_in_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new FormLog_in().Show();
+        }
+
+        private void FormSign_in_FormClosing(object sender, FormClosingEventArgs e)
+        {            
+                Application.Exit(); 
         }
     }
 }

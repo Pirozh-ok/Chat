@@ -30,6 +30,7 @@ namespace Chat
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labException = new System.Windows.Forms.Label();
             this.bSign_up = new System.Windows.Forms.Button();
             this.bLog_in = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -39,7 +40,6 @@ namespace Chat
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tLogin = new System.Windows.Forms.TextBox();
-            this.labException = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -61,6 +61,17 @@ namespace Chat
             this.panel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.panel1.Size = new System.Drawing.Size(411, 459);
             this.panel1.TabIndex = 0;
+            // 
+            // labException
+            // 
+            this.labException.AutoSize = true;
+            this.labException.ForeColor = System.Drawing.Color.White;
+            this.labException.Location = new System.Drawing.Point(138, 288);
+            this.labException.Name = "labException";
+            this.labException.Size = new System.Drawing.Size(183, 17);
+            this.labException.TabIndex = 8;
+            this.labException.Text = "Marked fields are required *";
+            this.labException.Visible = false;
             // 
             // bSign_up
             // 
@@ -97,7 +108,7 @@ namespace Chat
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.label3.Location = new System.Drawing.Point(51, 236);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(151, 40);
+            this.label3.Size = new System.Drawing.Size(146, 40);
             this.label3.TabIndex = 4;
             this.label3.Text = "Password";
             // 
@@ -141,7 +152,7 @@ namespace Chat
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.label1.Location = new System.Drawing.Point(98, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(214, 98);
+            this.label1.Size = new System.Drawing.Size(213, 97);
             this.label1.TabIndex = 0;
             this.label1.Text = "ChaT";
             // 
@@ -166,17 +177,6 @@ namespace Chat
             this.tLogin.Size = new System.Drawing.Size(166, 38);
             this.tLogin.TabIndex = 7;
             // 
-            // labException
-            // 
-            this.labException.AutoSize = true;
-            this.labException.ForeColor = System.Drawing.Color.White;
-            this.labException.Location = new System.Drawing.Point(138, 288);
-            this.labException.Name = "labException";
-            this.labException.Size = new System.Drawing.Size(183, 17);
-            this.labException.TabIndex = 8;
-            this.labException.Text = "Marked fields are required *";
-            this.labException.Visible = false;
-            // 
             // FormLog_in
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -184,6 +184,8 @@ namespace Chat
             this.ClientSize = new System.Drawing.Size(394, 450);
             this.Controls.Add(this.panel1);
             this.Name = "FormLog_in";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormLog_in_FormClosing);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);

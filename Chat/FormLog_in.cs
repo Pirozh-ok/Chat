@@ -65,10 +65,13 @@ namespace Chat
 
         private void bSign_up_Click(object sender, EventArgs e)
         {
-            FormLog_in formLog_In = this; 
-            FormSign_in formSignIn = new FormSign_in (ref formLog_In);
-            formSignIn.Show();
-            this.Visible = false;
+            this.Hide();
+            new FormSign_in().Show();
+        }
+
+        private void FormLog_in_FormClosing(object sender, FormClosingEventArgs e)
+        {
+                Application.Exit();
         }
     }
 }

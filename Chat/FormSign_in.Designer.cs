@@ -43,6 +43,7 @@ namespace Chat
             this.label5 = new System.Windows.Forms.Label();
             this.cbGender = new System.Windows.Forms.ComboBox();
             this.labException = new System.Windows.Forms.Label();
+            this.bLog_in = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -160,9 +161,9 @@ namespace Chat
             this.bCreatAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(187)))), ((int)(((byte)(63)))));
             this.bCreatAccount.Font = new System.Drawing.Font("Arial Narrow", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bCreatAccount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.bCreatAccount.Location = new System.Drawing.Point(83, 375);
+            this.bCreatAccount.Location = new System.Drawing.Point(108, 366);
             this.bCreatAccount.Name = "bCreatAccount";
-            this.bCreatAccount.Size = new System.Drawing.Size(230, 50);
+            this.bCreatAccount.Size = new System.Drawing.Size(197, 50);
             this.bCreatAccount.TabIndex = 9;
             this.bCreatAccount.Text = "Creat Account";
             this.bCreatAccount.UseVisualStyleBackColor = false;
@@ -193,12 +194,27 @@ namespace Chat
             // 
             this.labException.AutoSize = true;
             this.labException.ForeColor = System.Drawing.Color.White;
-            this.labException.Location = new System.Drawing.Point(144, 355);
+            this.labException.Location = new System.Drawing.Point(143, 346);
             this.labException.Name = "labException";
             this.labException.Size = new System.Drawing.Size(183, 17);
             this.labException.TabIndex = 12;
             this.labException.Text = "* Marked fields are required";
             this.labException.Visible = false;
+            // 
+            // bLog_in
+            // 
+            this.bLog_in.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
+            this.bLog_in.FlatAppearance.BorderSize = 0;
+            this.bLog_in.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bLog_in.Font = new System.Drawing.Font("Arial Narrow", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bLog_in.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.bLog_in.Location = new System.Drawing.Point(81, 417);
+            this.bLog_in.Name = "bLog_in";
+            this.bLog_in.Size = new System.Drawing.Size(245, 31);
+            this.bLog_in.TabIndex = 13;
+            this.bLog_in.Text = "Already have an account";
+            this.bLog_in.UseVisualStyleBackColor = false;
+            this.bLog_in.Click += new System.EventHandler(this.bLog_in_Click);
             // 
             // FormSign_in
             // 
@@ -206,6 +222,7 @@ namespace Chat
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             this.ClientSize = new System.Drawing.Size(394, 450);
+            this.Controls.Add(this.bLog_in);
             this.Controls.Add(this.labException);
             this.Controls.Add(this.cbGender);
             this.Controls.Add(this.label5);
@@ -218,6 +235,8 @@ namespace Chat
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FormSign_in";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSign_in_FormClosing);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -245,5 +264,6 @@ namespace Chat
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cbGender;
         private System.Windows.Forms.Label labException;
+        private System.Windows.Forms.Button bLog_in;
     }
 }

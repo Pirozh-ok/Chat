@@ -28,15 +28,16 @@ namespace Chat
                     bool isCheck = false; 
                     var login = this.tLogin.Text;
                     var password = this.tPassword.Text;
-                    var accountInfo = new UserData(); 
 
                     using (var context = new DBContext())
                     { 
                         foreach(var account in context.UserDatas)
                             if(account.Login == login && account.Password == password)
                             {
-                                accountInfo = account;
-                                MessageBox.Show("Выполняю вход");
+                                MainFormChat mainFormChat = new MainFormChat();
+                                mainFormChat.UserAccount = account;
+                                mainFormChat.Show();
+                                this.Hide(); 
                                 isCheck = true; 
                                 break; 
                             }

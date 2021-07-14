@@ -41,6 +41,7 @@ namespace Chat
             try
             {
                 SetStartSettings();
+                bool isExists = false; 
 
                 if (tUserName.Text != "" && tLogin.Text != "" && tPassword.Text != "")
                 {
@@ -55,14 +56,21 @@ namespace Chat
                             Sex = sex.male,
                         };
 
-                        context.UserDatas.Add(userData);
-                        context.SaveChanges();
-                        MessageBox.Show($"User {userData.UserName} was successfully registered");
-                    }
+                        foreach (var ob in context.UserDatas)
+                            if (userData.Login == ob.Login)
+                                isExists = true;
 
-                    FormLog_in formLog_In = new FormLog_in();
-                    formLog_In.Show(); 
-                    this.Close();
+                        if (!isExists)
+                        {
+                            context.UserDatas.Add(userData);
+                            context.SaveChanges();
+                            MessageBox.Show($"User {userData.UserName} was successfully registered");
+                            this.Hide();
+                            new FormLog_in().Show();
+                        }
+                        
+                        else MessageBox.Show("A user with this login already exists.Come up with another one.");
+                    }
                 }
                 else throw new FormatException(); 
             }

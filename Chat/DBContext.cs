@@ -7,5 +7,6 @@ namespace Chat
         public DBContext() : base("DbConnectionString")
         { }
         public DbSet<UserData> UserDatas { get; set; }
+
     }
 }

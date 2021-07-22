@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Chat
@@ -21,6 +14,74 @@ namespace Chat
         private void MainFormChat_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit(); 
+        }
+
+        /* Инициализация формы данными аккаунта при её загрузке. */
+        private void MainFormChat_Load(object sender, EventArgs e)
+        {
+            lblUserName.Text = UserAccount.UserName;
+            lbAllChat.Items.Add("первый чат"); 
+            lbAllChat.Items.Add("первый чат");
+            lbAllChat.Items.Add("первый чат");
+            lbAllChat.Items.Add("первый чат");
+            lbAllChat.Items.Add("первый чат");
+            lbAllChat.Items.Add("первый чат");
+            lbAllChat.Items.Add("первый чат");
+            lbAllChat.Items.Add("первый чат");
+            lbAllChat.Items.Add("первый чат");
+            lbAllChat.Items.Add("первый чат");
+            lbAllChat.Items.Add("первый чат");
+            lbAllChat.Items.Add("первый чат");
+            lbAllChat.Items.Add("первый чат");
+            lbAllChat.Items.Add("первый чат");
+            lbAllChat.Items.Add("первый чат");
+            lbAllChat.Items.Add("первый чат");
+            lbAllChat.Items.Add("первый чат");
+            lbAllChat.Items.Add("первый чат");
+            lbAllChat.Items.Add("первый чат");
+            lbAllChat.Items.Add("первый чат");
+            lbAllChat.Items.Add("первый чат");
+            lbAllChat.Items.Add("первый чат");
+            lbAllChat.Items.Add("первый чат");
+            lbAllChat.Items.Add("первый чат");
+
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+            lbCurrentChat.Items.Add("второй чат");
+        }
+
+        private void tbSearchChat_Click(object sender, EventArgs e)
+        {
+            tbSearchChat.Text = string.Empty; 
         }
     }
 }

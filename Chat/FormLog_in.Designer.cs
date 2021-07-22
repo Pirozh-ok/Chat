@@ -133,6 +133,8 @@ namespace Chat
             this.tPassword.PasswordChar = '*';
             this.tPassword.Size = new System.Drawing.Size(166, 38);
             this.tPassword.TabIndex = 8;
+            this.tPassword.Text = "5555";
+            this.tPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tPassword_KeyDown);
             // 
             // label2
             // 
@@ -176,6 +178,7 @@ namespace Chat
             this.tLogin.Name = "tLogin";
             this.tLogin.Size = new System.Drawing.Size(166, 38);
             this.tLogin.TabIndex = 7;
+            this.tLogin.Text = "vanya";
             // 
             // FormLog_in
             // 

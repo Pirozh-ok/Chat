@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Chat
 {
@@ -10,5 +11,6 @@ namespace Chat
         public string UserName {get;set;}
         public DateTime DateRegister { get; set; }
         public sex? Sex { get; set; }
+        public List<UserChat> ListUserChats = new List<UserChat>(); 
     }
 }

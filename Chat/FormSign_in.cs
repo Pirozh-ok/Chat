@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace Chat
 {
-    public enum sex
+    public enum Sex
     {
         male,
         female,
@@ -46,7 +46,7 @@ namespace Chat
                             Password = tPassword.Text,
                             UserName = tUserName.Text,
                             DateRegister = DateTime.Now,
-                            Sex = sex.male,
+                            Sex = Sex.male,
 
                         };
 

@@ -10,7 +10,7 @@ namespace Chat
         public int Id { get; set; }
         public string UserName {get;set;}
         public DateTime DateRegister { get; set; }
-        public sex? Sex { get; set; }
+        public Sex? Sex { get; set; }
         public List<UserChat> ListUserChats = new List<UserChat>(); 
     }
 }

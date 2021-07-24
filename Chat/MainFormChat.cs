@@ -49,5 +49,13 @@ namespace Chat
             MessageBox.Show("Нажата кнопка начать общение!");
             // форма добавления чата
         }
+
+        private void bYourProfile_Click(object sender, EventArgs e)
+        {
+            var formProfile = new FormAboutMyProfile();
+            formProfile.UserAccount = this.UserAccount;
+            //formProfile.TopMost = true; 
+            formProfile.ShowDialog();
+        }
     }
 }

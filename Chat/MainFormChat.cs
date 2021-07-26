@@ -25,10 +25,9 @@ namespace Chat
 
             using (var contex = new DBContext())
             {
+                var currentUser = contex.UserChats.Single()
                 if (UserAccount.ListUserChats.Count != 0)
                 {
-                    bStartChat.Visible = false;
-                    bStartChat.Enabled = false;
                     Controls.Remove(bStartChat);
 
                     foreach (var chats in UserAccount.ListUserChats)
@@ -46,8 +45,10 @@ namespace Chat
 
         private void bStartChat_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Нажата кнопка начать общение!");
-            // форма добавления чата
+            this.Hide();
+            var newForm = new CreatNewChat();
+            newForm.UserAccount = this.UserAccount; 
+            newForm.Show();
         }
 
         private void bYourProfile_Click(object sender, EventArgs e)

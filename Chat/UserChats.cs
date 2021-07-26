@@ -7,7 +7,7 @@ namespace Chat
     { 
         [Key]
         public int Id { get; set; }
-        public List<int> IdMembers = new List<int>(); 
+        public int IdRecipient { get; set; } 
         public string Name { get; set; }
     }
 }

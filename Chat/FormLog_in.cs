@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
-using System.Windows.Input;
 
 namespace Chat
 {
@@ -34,27 +34,17 @@ namespace Chat
 
                 if (this.tLogin.Text != "" && this.tPassword.Text != "")
                 {
-                    bool isCheck = false;
                     var login = this.tLogin.Text;
                     var password = this.tPassword.Text;
 
                     using (var context = new DBContext())
                     {
-                        foreach (var account in context.UserDatas)
-                            if (account.Login == login && account.Password == password)
-                            {
-                                MainFormChat mainFormChat = new MainFormChat();
-                                mainFormChat.UserAccount = account;
-                                mainFormChat.Show();
-                                this.Hide();
-                                isCheck = true;
-                                break;
-                            }
+                        var account = context.UserDatas.Single(x => x.Login == login && x.Password == password);
 
-                        if (!isCheck)
-                        {
-                            MessageBox.Show("Account not found, please check details and try again");
-                        }
+                        MainFormChat mainFormChat = new MainFormChat();
+                        mainFormChat.UserAccount = account;
+                        mainFormChat.Show();
+                        this.Hide();
                     }
                 }
                 else
@@ -69,6 +59,10 @@ namespace Chat
                     panel3.BorderStyle = BorderStyle.Fixed3D;
 
                 labException.Visible = true;
+            }
+            catch (InvalidOperationException)
+            {
+                MessageBox.Show("Account not found, please check details and try again");
             }
         }
 

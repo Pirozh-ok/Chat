@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using System.Data.Entity;
+using System.Collections.Generic;
 
 namespace Chat
 {
     public partial class MainFormChat : Form
     {
         public UserData UserAccount { get; set; }
+        private List <UserChat> ListChats { get; set; } = new List<UserChat>();
         public MainFormChat()
         {
             InitializeComponent();
@@ -25,14 +28,17 @@ namespace Chat
 
             using (var contex = new DBContext())
             {
-                var currentUser = contex.UserChats.Single()
-                if (UserAccount.ListUserChats.Count != 0)
-                {
-                    Controls.Remove(bStartChat);
+                ListChats = contex.UserChats.Include(d => d.User).ToList();
+                var SortListChats = ListChats.OrderByDescending(x => x.TimeLastMsg); 
 
-                    foreach (var chats in UserAccount.ListUserChats)
+                if (ListChats.Count != 0)
+                {
+                    lblNotChats.Visible = false;
+                    bStartChat.Location = new System.Drawing.Point(108, 502);
+
+                    foreach (var chat in ListChats)
                     {
-                        lbAllChat.Items.Add(chats.Name);
+                        lbAllChat.Items.Add(chat.Name);
                     }
                 }
             }
@@ -54,8 +60,7 @@ namespace Chat
         private void bYourProfile_Click(object sender, EventArgs e)
         {
             var formProfile = new FormAboutMyProfile();
-            formProfile.UserAccount = this.UserAccount;
-            //formProfile.TopMost = true; 
+            formProfile.UserAccount = this.UserAccount; 
             formProfile.ShowDialog();
         }
     }

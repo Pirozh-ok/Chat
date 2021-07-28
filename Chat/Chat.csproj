@@ -84,6 +84,26 @@
     <Compile Include="Migrations\202107260755173_newMig.designer.cs">
       <DependentUpon>202107260755173_newMig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107280138392_newMig1.cs" />
+    <Compile Include="Migrations\202107280138392_newMig1.designer.cs">
+      <DependentUpon>202107280138392_newMig1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107280151062_newMig2.cs" />
+    <Compile Include="Migrations\202107280151062_newMig2.designer.cs">
+      <DependentUpon>202107280151062_newMig2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107280512108_newMig3.cs" />
+    <Compile Include="Migrations\202107280512108_newMig3.designer.cs">
+      <DependentUpon>202107280512108_newMig3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107281258170_newMig31.cs" />
+    <Compile Include="Migrations\202107281258170_newMig31.designer.cs">
+      <DependentUpon>202107281258170_newMig31.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107281320300_newMig4.cs" />
+    <Compile Include="Migrations\202107281320300_newMig4.designer.cs">
+      <DependentUpon>202107281320300_newMig4.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserChats.cs" />
     <Compile Include="DBContext.cs" />
     <Compile Include="FormLog_in.cs">
@@ -132,6 +152,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107260755173_newMig.resx">
       <DependentUpon>202107260755173_newMig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107280138392_newMig1.resx">
+      <DependentUpon>202107280138392_newMig1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107280151062_newMig2.resx">
+      <DependentUpon>202107280151062_newMig2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107280512108_newMig3.resx">
+      <DependentUpon>202107280512108_newMig3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107281258170_newMig31.resx">
+      <DependentUpon>202107281258170_newMig31.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107281320300_newMig4.resx">
+      <DependentUpon>202107281320300_newMig4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

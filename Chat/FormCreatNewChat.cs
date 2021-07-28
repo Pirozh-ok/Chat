@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Chat
@@ -19,6 +15,7 @@ namespace Chat
             InitializeComponent();
         }
 
+        /*При загрузке формы. */
         private void CreatNewChat_Load(object sender, EventArgs e)
         {
             this.Hide();
@@ -49,6 +46,7 @@ namespace Chat
                 tbSearchChat.Text = "Search: ";
         }
 
+        /*При изменение строки поиска человека*/
         private void tbSearchChat_TextChanged(object sender, EventArgs e)
         {
             if (tbSearchChat.Text == string.Empty || tbSearchChat.Text == "Search: ")
@@ -62,15 +60,26 @@ namespace Chat
 
             using (var context = new DBContext())
             {
-                foreach (var user in context.UserDatas)
+                /* Выбираем из списка всех пользователей только тех, кто соответствует введёной пользователей строке и чтоб они не совпадали
+                 с текущим аккаунтом пользователя. */
+                var users = context.UserDatas.Where(x => x.UserName.ToUpper().Contains(tbSearchChat.Text.ToUpper()) && x.Id != this.UserAccount.Id);
+
+                foreach (var user in users)
                 {
-                    if (user.UserName.Contains(tbSearchChat.Text))
+                        countSearch++; 
+                        lbSearchMembers.Items.Add(user.UserName);
+                        ListIdSearchUsers.Add(user.Id);                 
+                }
+
+                /*foreach (var user in context.UserDatas)
+                {
+                    if (user.UserName.ToUpper().Contains(tbSearchChat.Text.ToUpper()) && user != this.UserAccount)
                     {
                         countSearch++; 
                         lbSearchMembers.Items.Add(user.UserName);
                         ListIdSearchUsers.Add(user.Id);
                     }
-                }
+                }*/
 
                 if (countSearch == 0)
                 {
@@ -92,6 +101,7 @@ namespace Chat
             this.Hide();
         }
 
+        /*При клике на создание чата*/
         private void bCreatChat_Click(object sender, EventArgs e)
         {
             if (lbSearchMembers.SelectedItem != null)
@@ -102,15 +112,16 @@ namespace Chat
                 {
                     var currentUser = context.UserDatas.Single(x=> x.Id == UserAccount.Id);
 
-                    currentUser.ListUserChats.Add(
-                        new UserChat()
-                        {
-                            IdRecipient = ListIdSearchUsers[IdUserForChat],
-                            Name = context.UserDatas.Single(x => x.Id == IdUserForChat).UserName
-                        });
+                    currentUser.ListUserChats.Add(new UserChat()
+                    {
+                        IdRecipient = ListIdSearchUsers[IdUserForChat],
+                        Name = context.UserDatas.Single(x => x.Id == IdUserForChat).UserName,
+                        TimeLastMsg = DateTime.Now,
+                        User = currentUser
+                    });
+                    context.SaveChanges();
 
-                    UserAccount = currentUser; 
-                    context.SaveChanges(); 
+                    UserAccount = currentUser;                  
                 }
 
                 var newForm = new MainFormChat();

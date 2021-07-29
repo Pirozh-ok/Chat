@@ -26,20 +26,24 @@ namespace Chat
             lblUserName.Text = UserAccount.UserName;
             lblNotChats.Text = "You don't have any dialogs yet. \r\n\tStart chatting right now!";
 
-            using (var contex = new DBContext())
+            using (var context = new DBContext())
             {
-                ListChats = contex.UserChats.Include(d => d.User).ToList();
-                var SortListChats = ListChats.OrderByDescending(x => x.TimeLastMsg); 
+                /*context.UserChats.RemoveRange(context.UserChats);
+                context.SaveChanges();*/
 
+                /*Получаем из базы данных список чатов, которые существуют у пользователя, сортированный по дате последнего сообщения в этом чате. */
+                ListChats = context.UserChats.Include(d => d.User).Where(x=>x.UserID == UserAccount.Id).OrderByDescending(x => x.TimeLastMsg).ToList();
+                
                 if (ListChats.Count != 0)
                 {
                     lblNotChats.Visible = false;
-                    bStartChat.Location = new System.Drawing.Point(108, 502);
+                    bStartChat.Location = new System.Drawing.Point(95, 400);
 
                     foreach (var chat in ListChats)
                     {
                         lbAllChat.Items.Add(chat.Name);
                     }
+                    this.lblSelectChat.Visible = false; 
                 }
             }
         }
@@ -62,6 +66,13 @@ namespace Chat
             var formProfile = new FormAboutMyProfile();
             formProfile.UserAccount = this.UserAccount; 
             formProfile.ShowDialog();
+        }
+
+        private void lbAllChat_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (lbAllChat.SelectedItem != null)
+                MessageBox.Show("Test");
+            else lbAllChat.SelectedItem = null; 
         }
     }
 }

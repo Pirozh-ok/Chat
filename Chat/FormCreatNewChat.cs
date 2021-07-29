@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using System.Data.Entity;
 
 namespace Chat
 {
@@ -22,12 +23,25 @@ namespace Chat
 
             using (var context = new DBContext())
             {
+                var ListChat = context.UserChats.Include(d=>d.User).Where(d => d.UserID == UserAccount.Id).ToList();
+
                 foreach (var user in context.UserDatas)
                 {
-                    if (user != UserAccount)
+                    if (user.Id != UserAccount.Id)
                     {
-                        lbSearchMembers.Items.Add(user.UserName);
-                        ListIdSearchUsers.Add(user.Id);
+                        /*Ищем в списке чатов пользователя чат с каждым найденным пользователем, если его нет, 
+                     * то отображаем пользователя в списке тех, с кем можно начать чат. */
+                        try
+                        {
+                            ListChat.Single(x => x.IdRecipient == user.Id);
+                        }
+                        catch (InvalidOperationException)
+                        {
+                            {
+                                lbSearchMembers.Items.Add(user.UserName);
+                                ListIdSearchUsers.Add(user.Id);
+                            }
+                        }
                     }
                 }
             }
@@ -63,23 +77,30 @@ namespace Chat
                 /* Выбираем из списка всех пользователей только тех, кто соответствует введёной пользователей строке и чтоб они не совпадали
                  с текущим аккаунтом пользователя. */
                 var users = context.UserDatas.Where(x => x.UserName.ToUpper().Contains(tbSearchChat.Text.ToUpper()) && x.Id != this.UserAccount.Id);
+                /* Подгружаем список всех чатов пользователя. */
+                var ListChat = context.UserChats.Include(d => d.User).Where(d=>d.UserID == UserAccount.Id).ToList();
 
+                
                 foreach (var user in users)
                 {
-                        countSearch++; 
+                    /*Ищем в списке чатов пользователя чат с каждым найденным пользователем, если его нет, 
+                     * то отображаем пользователя в списке тех, с кем можно начать чат. */
+                        try
+                        {
+                            ListChat.Single(x => x.IdRecipient == user.Id);
+                        }
+                        catch (InvalidOperationException)
+                        {
+                            {
+                                lbSearchMembers.Items.Add(user.UserName);
+                                ListIdSearchUsers.Add(user.Id);
+                            }
+                        }
+                    
+                    countSearch++; 
                         lbSearchMembers.Items.Add(user.UserName);
                         ListIdSearchUsers.Add(user.Id);                 
                 }
-
-                /*foreach (var user in context.UserDatas)
-                {
-                    if (user.UserName.ToUpper().Contains(tbSearchChat.Text.ToUpper()) && user != this.UserAccount)
-                    {
-                        countSearch++; 
-                        lbSearchMembers.Items.Add(user.UserName);
-                        ListIdSearchUsers.Add(user.Id);
-                    }
-                }*/
 
                 if (countSearch == 0)
                 {
@@ -111,14 +132,25 @@ namespace Chat
                 using (var context = new DBContext())
                 {
                     var currentUser = context.UserDatas.Single(x=> x.Id == UserAccount.Id);
+                    var userForChat = context.UserDatas.Single(x => x.Id == IdUserForChat);
 
+                    /*Добавляем диалог в БД у обоих собеседников*/
                     currentUser.ListUserChats.Add(new UserChat()
                     {
-                        IdRecipient = ListIdSearchUsers[IdUserForChat],
-                        Name = context.UserDatas.Single(x => x.Id == IdUserForChat).UserName,
+                        IdRecipient = userForChat.Id,
+                        Name = userForChat.UserName,
                         TimeLastMsg = DateTime.Now,
                         User = currentUser
                     });
+
+                    userForChat.ListUserChats.Add(new UserChat()
+                    {
+                        IdRecipient = UserAccount.Id,
+                        Name = UserAccount.UserName,
+                        TimeLastMsg = DateTime.Now,
+                        User = userForChat
+                    });
+
                     context.SaveChanges();
 
                     UserAccount = currentUser;                  

@@ -32,7 +32,9 @@ namespace Chat
                 context.SaveChanges();*/
 
                 /*Получаем из базы данных список чатов, которые существуют у пользователя, сортированный по дате последнего сообщения в этом чате. */
-                ListChats = context.UserChats.Include(d => d.User).Where(x=>x.UserID == UserAccount.Id).OrderByDescending(x => x.TimeLastMsg).ToList();
+                ListChats = context.UserChats.Include(d => d.User)
+                                             .Where(x=>x.UserID == UserAccount.Id)
+                                             .OrderByDescending(x => x.TimeLastMsg).ToList();
                 
                 if (ListChats.Count != 0)
                 {

@@ -23,7 +23,8 @@ namespace Chat
 
             using (var context = new DBContext())
             {
-                var ListChat = context.UserChats.Include(d=>d.User).Where(d => d.UserID == UserAccount.Id).ToList();
+                var ListChat = context.UserChats.Include(d=>d.User)
+                                                .Where(d => d.UserID == UserAccount.Id).ToList();
 
                 foreach (var user in context.UserDatas)
                 {
@@ -76,30 +77,28 @@ namespace Chat
             {
                 /* Выбираем из списка всех пользователей только тех, кто соответствует введёной пользователей строке и чтоб они не совпадали
                  с текущим аккаунтом пользователя. */
-                var users = context.UserDatas.Where(x => x.UserName.ToUpper().Contains(tbSearchChat.Text.ToUpper()) && x.Id != this.UserAccount.Id);
-                /* Подгружаем список всех чатов пользователя. */
-                var ListChat = context.UserChats.Include(d => d.User).Where(d=>d.UserID == UserAccount.Id).ToList();
+                var users = context.UserDatas.Where(x => x.UserName.ToUpper().Contains(tbSearchChat.Text.ToUpper()) && x.Id != this.UserAccount.Id).ToList();
 
-                
+                /* Подгружаем список всех чатов пользователя. */
+                var ListChat = context.UserChats.Include(d => d.User)
+                                                .Where(d=>d.UserID == UserAccount.Id).ToList();
+            
                 foreach (var user in users)
                 {
                     /*Ищем в списке чатов пользователя чат с каждым найденным пользователем, если его нет, 
                      * то отображаем пользователя в списке тех, с кем можно начать чат. */
-                        try
+                    try
+                    {
+                        ListChat.Single(x => x.IdRecipient == user.Id);
+                    }
+                    catch (InvalidOperationException)
+                    {
                         {
-                            ListChat.Single(x => x.IdRecipient == user.Id);
+                            lbSearchMembers.Items.Add(user.UserName);
+                            ListIdSearchUsers.Add(user.Id);
+                            countSearch++;
                         }
-                        catch (InvalidOperationException)
-                        {
-                            {
-                                lbSearchMembers.Items.Add(user.UserName);
-                                ListIdSearchUsers.Add(user.Id);
-                            }
-                        }
-                    
-                    countSearch++; 
-                        lbSearchMembers.Items.Add(user.UserName);
-                        ListIdSearchUsers.Add(user.Id);                 
+                    }                 
                 }
 
                 if (countSearch == 0)

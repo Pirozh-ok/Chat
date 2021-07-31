@@ -72,9 +72,38 @@ namespace Chat
 
         private void lbAllChat_MouseClick(object sender, MouseEventArgs e)
         {
-            if (lbAllChat.SelectedItem != null)
-                MessageBox.Show("Test");
-            else lbAllChat.SelectedItem = null; 
+            if (lbAllChat.SelectedItem == null)
+                return;
+
+            var currentChat = ListChats[lbAllChat.SelectedIndex];
+
+            using (var context = new DBContext())
+            {
+                var ListMsg = context.Messages.Where(x => x.IdSender == UserAccount.Id && x.IdRecipient == currentChat.IdRecipient).ToList();
+
+                tMsg.Visible = true; 
+
+                if (ListMsg.Count == 0)
+                {
+                    lblNotMsg.Visible = true;
+                    return; 
+                }
+
+                foreach (var msg in ListMsg)
+                    lbCurrentChat.Items.Add(msg.DateSend.ToShortTimeString() + " " + context.UserDatas.Single(x => x.Id == msg.IdSender).UserName + ": " + msg.Message);
+            }
+        }
+
+        private void tMsg_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (tMsg.Text == "Enter message: ")
+                tMsg.Text = string.Empty; 
+        }
+
+        private void tMsg_MouseLeave(object sender, EventArgs e)
+        {
+            if (tMsg.Text == string.Empty)
+                tMsg.Text = "Enter message: "; 
         }
     }
 }

@@ -40,6 +40,7 @@ namespace Chat
             this.lbCurrentChat = new System.Windows.Forms.ListBox();
             this.lblNotMsg = new System.Windows.Forms.Label();
             this.tMsg = new System.Windows.Forms.TextBox();
+            this.bSendMsg = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // bYourProfile
@@ -78,7 +79,7 @@ namespace Chat
             this.lbAllChat.Name = "lbAllChat";
             this.lbAllChat.Size = new System.Drawing.Size(318, 384);
             this.lbAllChat.TabIndex = 3;
-            this.lbAllChat.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lbAllChat_MouseClick);
+            this.lbAllChat.SelectedIndexChanged += new System.EventHandler(this.lbAllChat_SelectedIndexChanged);
             // 
             // tbSearchChat
             // 
@@ -160,17 +161,36 @@ namespace Chat
             // 
             // tMsg
             // 
+            this.tMsg.Enabled = false;
             this.tMsg.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tMsg.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.tMsg.Location = new System.Drawing.Point(391, 471);
+            this.tMsg.Location = new System.Drawing.Point(381, 471);
             this.tMsg.MaxLength = 1500;
             this.tMsg.Name = "tMsg";
-            this.tMsg.Size = new System.Drawing.Size(518, 28);
+            this.tMsg.Size = new System.Drawing.Size(488, 28);
             this.tMsg.TabIndex = 10;
             this.tMsg.Text = "Enter message: ";
             this.tMsg.Visible = false;
             this.tMsg.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tMsg_MouseClick);
+            this.tMsg.TextChanged += new System.EventHandler(this.tMsg_TextChanged);
+            this.tMsg.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tMsg_KeyDown);
             this.tMsg.MouseLeave += new System.EventHandler(this.tMsg_MouseLeave);
+            // 
+            // bSendMsg
+            // 
+            this.bSendMsg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.bSendMsg.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bSendMsg.BackgroundImage")));
+            this.bSendMsg.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.bSendMsg.Enabled = false;
+            this.bSendMsg.FlatAppearance.BorderSize = 0;
+            this.bSendMsg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bSendMsg.Location = new System.Drawing.Point(889, 471);
+            this.bSendMsg.Name = "bSendMsg";
+            this.bSendMsg.Size = new System.Drawing.Size(34, 27);
+            this.bSendMsg.TabIndex = 11;
+            this.bSendMsg.UseVisualStyleBackColor = false;
+            this.bSendMsg.Visible = false;
+            this.bSendMsg.Click += new System.EventHandler(this.bSendMsg_Click);
             // 
             // MainFormChat
             // 
@@ -179,6 +199,7 @@ namespace Chat
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             this.ClientSize = new System.Drawing.Size(974, 546);
+            this.Controls.Add(this.bSendMsg);
             this.Controls.Add(this.tMsg);
             this.Controls.Add(this.lblNotMsg);
             this.Controls.Add(this.lblSelectChat);
@@ -210,5 +231,6 @@ namespace Chat
         private System.Windows.Forms.ListBox lbCurrentChat;
         private System.Windows.Forms.Label lblNotMsg;
         private System.Windows.Forms.TextBox tMsg;
+        private System.Windows.Forms.Button bSendMsg;
     }
 }

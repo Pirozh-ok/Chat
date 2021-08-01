@@ -10,6 +10,7 @@ namespace Chat
     {
         public UserData UserAccount { get; set; }
         private List <UserChat> ListChats { get; set; } = new List<UserChat>();
+        private UserChat CurrentChat { get; set; }
         public MainFormChat()
         {
             InitializeComponent();
@@ -45,7 +46,7 @@ namespace Chat
                     {
                         lbAllChat.Items.Add(chat.Name);
                     }
-                    this.lblSelectChat.Visible = false; 
+                    this.lblSelectChat.Visible = true; 
                 }
             }
         }
@@ -62,38 +63,12 @@ namespace Chat
             newForm.UserAccount = this.UserAccount; 
             newForm.Show();
         }
-
         private void bYourProfile_Click(object sender, EventArgs e)
         {
             var formProfile = new FormAboutMyProfile();
             formProfile.UserAccount = this.UserAccount; 
             formProfile.ShowDialog();
         }
-
-        private void lbAllChat_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (lbAllChat.SelectedItem == null)
-                return;
-
-            var currentChat = ListChats[lbAllChat.SelectedIndex];
-
-            using (var context = new DBContext())
-            {
-                var ListMsg = context.Messages.Where(x => x.IdSender == UserAccount.Id && x.IdRecipient == currentChat.IdRecipient).ToList();
-
-                tMsg.Visible = true; 
-
-                if (ListMsg.Count == 0)
-                {
-                    lblNotMsg.Visible = true;
-                    return; 
-                }
-
-                foreach (var msg in ListMsg)
-                    lbCurrentChat.Items.Add(msg.DateSend.ToShortTimeString() + " " + context.UserDatas.Single(x => x.Id == msg.IdSender).UserName + ": " + msg.Message);
-            }
-        }
-
         private void tMsg_MouseClick(object sender, MouseEventArgs e)
         {
             if (tMsg.Text == "Enter message: ")
@@ -104,6 +79,83 @@ namespace Chat
         {
             if (tMsg.Text == string.Empty)
                 tMsg.Text = "Enter message: "; 
+        }
+
+        private void tMsg_TextChanged(object sender, EventArgs e)
+        {
+            if (tMsg.Text == string.Empty || tMsg.Text == "Enter message: ")
+                bSendMsg.Enabled = false;
+            else bSendMsg.Enabled = true;
+        }
+
+        private string FormatStringForMsg(MessagesChats msg)
+        {
+            using (var context = new DBContext())
+            {
+                return msg.DateSend.ToShortTimeString() + " " + context.UserDatas.Single(x => x.Id == msg.IdSender).UserName + ": " + msg.Message; 
+            }
+        }
+        private void SendMsg()
+        {
+            lblNotMsg.Visible = false; 
+
+            using (var context = new DBContext())
+            {
+                var newMsg = new MessagesChats()
+                {
+                    Message = tMsg.Text,
+                    DateSend = DateTime.Now,
+                    IdSender = UserAccount.Id,
+                    IdRecipient = CurrentChat.IdRecipient
+                }; 
+
+                context.Messages.Add(newMsg);
+                context.SaveChanges();
+                lbCurrentChat.Items.Add(FormatStringForMsg(newMsg)); 
+            }
+
+            tMsg.Text = string.Empty;
+        }
+
+        private void tMsg_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                SendMsg(); 
+        }
+
+        private void bSendMsg_Click(object sender, EventArgs e)
+        {
+            SendMsg();
+        }
+
+        private void lbAllChat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lbAllChat.SelectedItem == null)
+                return;
+
+            lblSelectChat.Visible = false;
+            lbCurrentChat.Items.Clear(); 
+
+            CurrentChat = ListChats[lbAllChat.SelectedIndex];
+
+            using (var context = new DBContext())
+            {
+                var ListMsg = context.Messages.Where(x => x.IdSender == UserAccount.Id && x.IdRecipient == CurrentChat.IdRecipient
+                                                       || x.IdSender == CurrentChat.IdRecipient && x.IdRecipient == UserAccount.Id).ToList();
+
+                tMsg.Visible = true;
+                tMsg.Enabled = true;
+                bSendMsg.Visible = true;
+
+                if (ListMsg.Count == 0)
+                {
+                    lblNotMsg.Visible = true;
+                    return;
+                }
+
+                foreach (var msg in ListMsg)
+                    lbCurrentChat.Items.Add(FormatStringForMsg(msg));
+            }
         }
     }
 }

@@ -135,19 +135,36 @@ namespace Chat
             SendMsg();
         }
 
-        private async void lbAllChat_SelectedIndexChanged(object sender, EventArgs e)
+        private void lbAllChat_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lbAllChat.SelectedItem == null)
                 return;
 
-            await Task.Run(() => CheckNewMsg());
+            Thread threadCheckMsg = new Thread(() =>
+                {
+                    /*Action action = () => 
+                    {
+                        CheckNewMsg(); 
+                    }; 
+
+                    if (InvokeRequired)
+                    {
+                        Invoke(action);
+                    }
+                    else action();*/
+
+                    CheckForIllegalCrossThreadCalls = false;
+                    CheckNewMsg();
+                });
+
+            threadCheckMsg.Start();
 
             lblSelectChat.Visible = false;
             lbCurrentChat.Items.Clear();
 
             using (var context = new DBContext())
             {
-                CurrentChat = context.UserChats.ToList().Single(x => x.Id == ListChats[lbAllChat.SelectedIndex].Id); 
+                CurrentChat = context.UserChats.ToList().Single(x => x.Id == ListChats[lbAllChat.SelectedIndex].Id);
 
                 var ListMsg = context.Messages.Where(x => x.IdSender == UserAccount.Id && x.IdRecipient == CurrentChat.IdRecipient
                                                        || x.IdSender == CurrentChat.IdRecipient && x.IdRecipient == UserAccount.Id).ToList();
@@ -169,6 +186,7 @@ namespace Chat
                 {
                     lbCurrentChat.Items.Add(FormatStringForMsg(msg));
                 }
+                lbCurrentChat.TopIndex = lbCurrentChat.Items.Count - 1;
             }
         }
 
@@ -176,19 +194,23 @@ namespace Chat
         {
             while (true)
             {
-                Thread.Sleep(5000);
                 using (var context = new DBContext())
                 {
-                    var ListNewMsg = context.Messages.Where(x => (x.DateSend > CurrentChat.TimeLastMsg) 
-                                                        && (x.IdSender == UserAccount.Id && x.IdRecipient == CurrentChat.IdRecipient
-                                                         || x.IdSender == CurrentChat.IdRecipient && x.IdRecipient == UserAccount.Id)).ToList(); 
-                    
+                    var ListNewMsg = context.Messages.Where(x => (x.DateSend > CurrentChat.TimeLastMsg)
+                    && (x.IdSender == UserAccount.Id && x.IdRecipient == CurrentChat.IdRecipient
+                     || x.IdSender == CurrentChat.IdRecipient && x.IdRecipient == UserAccount.Id)).ToList();
+
+
                     if (ListNewMsg.Count != 0)
                     {
                         foreach (var msg in ListNewMsg)
+                        {
                             lbCurrentChat.Items.Add(FormatStringForMsg(msg));
+                        }
+                        lbCurrentChat.TopIndex = lbCurrentChat.Items.Count - 1;
                     }
 
+                    Thread.Sleep(5000);
                 }
             }
         }

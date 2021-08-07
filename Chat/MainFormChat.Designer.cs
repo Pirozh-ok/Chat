@@ -143,7 +143,7 @@ namespace Chat
             this.lbCurrentChat.ItemHeight = 26;
             this.lbCurrentChat.Location = new System.Drawing.Point(359, 19);
             this.lbCurrentChat.Name = "lbCurrentChat";
-            this.lbCurrentChat.Size = new System.Drawing.Size(594, 494);
+            this.lbCurrentChat.Size = new System.Drawing.Size(594, 468);
             this.lbCurrentChat.TabIndex = 2;
             // 
             // lblNotMsg
@@ -164,7 +164,7 @@ namespace Chat
             this.tMsg.Enabled = false;
             this.tMsg.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tMsg.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.tMsg.Location = new System.Drawing.Point(381, 471);
+            this.tMsg.Location = new System.Drawing.Point(381, 504);
             this.tMsg.MaxLength = 1500;
             this.tMsg.Name = "tMsg";
             this.tMsg.Size = new System.Drawing.Size(488, 28);
@@ -178,13 +178,13 @@ namespace Chat
             // 
             // bSendMsg
             // 
-            this.bSendMsg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.bSendMsg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             this.bSendMsg.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bSendMsg.BackgroundImage")));
             this.bSendMsg.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.bSendMsg.Enabled = false;
             this.bSendMsg.FlatAppearance.BorderSize = 0;
             this.bSendMsg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bSendMsg.Location = new System.Drawing.Point(889, 471);
+            this.bSendMsg.Location = new System.Drawing.Point(890, 506);
             this.bSendMsg.Name = "bSendMsg";
             this.bSendMsg.Size = new System.Drawing.Size(34, 27);
             this.bSendMsg.TabIndex = 11;
